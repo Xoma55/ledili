@@ -1,0 +1,26 @@
+# phpstorm project files
+.idea
+
+
+robots.txt
+
+# Cache and Logs
+system/logs/*
+system/cache/*
+system/cache_mfp/*
+system/storage/logs/*
+system/storage/cache/*
+system/storage/download/*
+system/storage/modification/*
+
+# this catalog must have rights "777" and owner is "import"
+system/storage/upload
+
+download/*
+
+# Images
+image/*
+#image/cache/*
+!image/flags
+!image/catalog
+
