@@ -2098,15 +2098,37 @@ class ControllerCheckoutOctFastorder extends Controller {
 //            $sumForDiscount = 0;
 //            $subtraction = 0;
 
-            $discounts = $this->config->get('total_customer_group_discount_customer_group_id');
-            foreach ($discounts as $group_id => $discount) {
-                if ($group_id == $customer['customer_group_id']) {
-                    $customerDiscount = $discount;
-                    break;
+            if($customer['customer_group_id']==$this->config->get('price_discount_group_id')) {
+
+                $this->load->model('extended/price_discount');
+                $discounts=$this->model_extended_price_discount->getPriceDiscounts();
+
+                $cartSubTotal=$this->cart->getSubTotal();
+
+                foreach ($discounts as $discount) {
+
+                    if($discount['threshold']>$cartSubTotal) {
+                        continue;
+                    } else {
+                        $customerDiscount=$discount['discount'];
+                        break;
+                    }
+                }
+
+            } else {
+
+                $discounts = $this->config->get('total_customer_group_discount_customer_group_id');
+                foreach ($discounts as $group_id => $discount) {
+                    if ($group_id == $customer['customer_group_id']) {
+                        $customerDiscount = $discount;
+                        break;
+                    }
                 }
             }
         }
-						 
+
+        //var_dump($customerDiscount); die();
+
 		$this->load->model('tool/image');
 		$this->load->model('tool/upload');
 

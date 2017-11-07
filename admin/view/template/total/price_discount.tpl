@@ -78,15 +78,15 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="input-group"><?php echo $entry_group; ?></label>
+                        <label class="col-sm-2 control-label" for="input-group"><span data-toggle="tooltip" title="<?php echo $help_pd_group; ?>"><?php echo $entry_group; ?></span></label>
                         <div class="col-sm-10">
                             <select name="price_discount_group_id" id="input-group" class="form-control">
                                 <option value="0"><?php echo $text_none; ?></option>
-                                <?php foreach ($groupes as $group) { ?>
-                                <?php if ($group['group_id'] == $price_discount_group_id) { ?>
-                                <option value="<?php echo $group['group_id']; ?>" selected="selected"><?php echo $group['title']; ?></option>
+                                <?php foreach ($groups as $group) { ?>
+                                <?php if ($group['customer_group_id'] == $price_discount_group_id) { ?>
+                                <option value="<?php echo $group['customer_group_id']; ?>" selected="selected"><?php echo $group['name']; ?></option>
                                 <?php } else { ?>
-                                <option value="<?php echo $group['group_id']; ?>"><?php echo $group['title']; ?></option>
+                                <option value="<?php echo $group['customer_group_id']; ?>"><?php echo $group['name']; ?></option>
                                 <?php } ?>
                                 <?php } ?>
                             </select>

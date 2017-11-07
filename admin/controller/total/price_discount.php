@@ -56,6 +56,8 @@ class ControllerTotalPriceDiscount extends Controller {
         $data['button_delete'] = $this->language->get('button_delete');
         $data['button_edit'] = $this->language->get('button_edit');
 
+        $data['help_pd_group'] = $this->language->get('help_pd_group');
+
         if (isset($this->error['warning'])) {
             $data['error_warning'] = $this->error['warning'];
         } else {
@@ -116,6 +118,13 @@ class ControllerTotalPriceDiscount extends Controller {
             $data['price_discount_tax_class_id'] = $this->config->get('price_discount_tax_class_id');
         }
 
+        if (isset($this->request->post['price_discount_group_id'])) {
+            $data['price_discount_group_id'] = $this->request->post['price_discount_group_id'];
+        } else {
+            $data['price_discount_group_id'] = $this->config->get('price_discount_group_id');
+        }
+
+
         $this->load->model('localisation/tax_class');
 
         $data['tax_classes'] = $this->model_localisation_tax_class->getTaxClasses();
@@ -135,7 +144,9 @@ class ControllerTotalPriceDiscount extends Controller {
         $this->load->model('extended/price_discount');
         $data['discount_list']=$this->model_extended_price_discount->getDiscountList();
 
-
+        $this->load->model('customer/customer_group');
+        $data['groups'] = $this->model_customer_customer_group->getCustomerGroups();
+        //echo '<pre>'; var_dump($data['groups']); die();
 
         $data['header'] = $this->load->controller('common/header');
         $data['column_left'] = $this->load->controller('common/column_left');
