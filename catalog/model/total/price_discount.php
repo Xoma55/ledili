@@ -103,7 +103,8 @@ class ModelTotalPriceDiscount extends Model {
                 $total -= $subtraction;
             }
 
-            if($this->config->get('total_customer_group_discount_show') == 1 || ($priceDiscount != 0 && $this->config->get('total_customer_group_discount_show') == 2)){
+            //if($this->config->get('total_customer_group_discount_show') == 1 || ($priceDiscount != 0 && $this->config->get('total_customer_group_discount_show') == 2)){
+            if($priceDiscount != 0){
                 $this->load->language('total/price_discount');
                 $total_data[] = array(
                     'code'       => 'price_discount',
