@@ -148,6 +148,8 @@
   </div>
 </div>
 
+<?php echo isset($gift)?$gift:''; ?>
+
 <script>
     $(document).ready(function () {
 

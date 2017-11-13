@@ -2127,8 +2127,6 @@ class ControllerCheckoutOctFastorder extends Controller {
             }
         }
 
-        //var_dump($customerDiscount); die();
-
 		$this->load->model('tool/image');
 		$this->load->model('tool/upload');
 
@@ -2395,7 +2393,11 @@ class ControllerCheckoutOctFastorder extends Controller {
 		$data['checkout'] = $this->url->link('checkout/oct_fastorder', '', 'SSL');
             
     $data['checkout_buttons'] = array();
-		
+
+
+        // Gifts
+        $data['gift']=$this->load->controller('extended/gift/gift');
+
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/oct_fastorder/cart.tpl')) {
 			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/checkout/oct_fastorder/cart.tpl', $data));
 		} else {
