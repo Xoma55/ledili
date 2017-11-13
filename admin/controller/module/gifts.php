@@ -329,6 +329,18 @@ class ControllerModuleGifts extends Controller {
         }
     }
 
+    public function del() {
+
+        if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
+            $this->load->model('extended/gifts');
+            foreach ($this->request->post['selected'] as $threshold_id) {
+                $this->model_extended_gifts->delete($threshold_id);
+            }
+        }
+    }
+
+
+
     public function edit() {
         if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 

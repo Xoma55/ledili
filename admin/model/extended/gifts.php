@@ -113,4 +113,10 @@ class ModelExtendedGifts extends Model {
         return $query->rows;
 
     }
+
+    public function delete($threshold_id) {
+        $this->db->query("DELETE FROM ".DB_PREFIX."price_gift WHERE threshold_id='".(int)$threshold_id."'");
+        $this->db->query("DELETE FROM ".DB_PREFIX."product_gift WHERE threshold_id='".(int)$threshold_id."'");
+    }
+
 }
